@@ -300,16 +300,16 @@ discordClient.on('message', async (msg) => {
 function getHelpString() {
     let out = '**VOICE COMMANDS:**\n'
         out += '```'
-        out += 'brother help\n'
-        out += 'brother play [random, favorites, <genre> or query]\n'
-        out += 'brother skip\n'
-        out += 'brother pause/resume\n'
-        out += 'brother shuffle\n'
-        out += 'brother genres\n'
-        out += 'brother set favorite\n'
-        out += 'brother favorites\n'
-        out += 'brother list\n'
-        out += 'brother clear list\n';
+        out += 'dude help\n'
+        out += 'dudedude play [random, favorites, <genre> or query]\n'
+        out += 'dude skip\n'
+        out += 'dude pause/resume\n'
+        out += 'dude shuffle\n'
+        out += 'dude genres\n'
+        out += 'dude set favorite\n'
+        out += 'dude favorites\n'
+        out += 'dude list\n'
+        out += 'dude clear list\n';
         out += '```'
 
         out += '**TEXT COMMANDS:**\n'
@@ -436,7 +436,7 @@ function process_commands_query(query, mapKey, userid) {
 
     let out = null;
 
-    const regex = /^brother ([a-zA-Z]+)(.+?)?$/;
+    const regex = /^dude ([a-zA-Z]+)(.+?)?$/;
     const m = query.match(regex);
     if (m && m.length) {
         const cmd = (m[1]||'').trim();
