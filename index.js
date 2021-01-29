@@ -300,16 +300,16 @@ discordClient.on('message', async (msg) => {
 function getHelpString() {
     let out = '**VOICE COMMANDS:**\n'
         out += '```'
-        out += 'OK Google help\n'
-        out += 'OK Google play [random, favorites, <genre> or query]\n'
-        out += 'OK Google skip\n'
-        out += 'OK Google pause/resume\n'
-        out += 'OK Google shuffle\n'
-        out += 'OK Google genres\n'
-        out += 'OK Google set favorite\n'
-        out += 'OK Google favorites\n'
-        out += 'OK Google list\n'
-        out += 'OK Google clear list\n';
+        out += 'Nixon help\n'
+        out += 'Nixon Google play [random, favorites, <genre> or query]\n'
+        out += 'Nixon Google skip\n'
+        out += 'Nixon Google pause/resume\n'
+        out += 'Nixon Google shuffle\n'
+        out += 'Nixon Google genres\n'
+        out += 'Nixon Google set favorite\n'
+        out += 'Nixon Google favorites\n'
+        out += 'Nixon Google list\n'
+        out += 'Nixon Google clear list\n';
         out += '```'
 
         out += '**TEXT COMMANDS:**\n'
@@ -436,7 +436,7 @@ function process_commands_query(query, mapKey, userid) {
 
     let out = null;
 
-    const regex = /^ok google ([a-zA-Z]+)(.+?)?$/;
+    const regex = /^nixon ([a-zA-Z]+)(.+?)?$/;
     const m = query.toLowerCase().match(regex);
     if (m && m.length) {
         const cmd = (m[1]||'').trim();
