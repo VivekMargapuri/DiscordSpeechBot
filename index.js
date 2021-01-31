@@ -706,8 +706,15 @@ async function music_message(message, mapKey) {
                 if (msg && msg.length) message.channel.send(msg);
             })
 
-        } 
-
+        }  else if(args[0] == _CMD_SUMMON) {
+            const channel = message.member.voice.channel;
+            message.guild.members.cache.forEach(member => {
+            //guard clause, early return
+            if(member.id === message.member.id || !member.voice.channel) return;
+            member.voice.setChannel(channel);
+            })           
+            
+        }
     }
     
     queueTryPlayNext(mapKey, (title)=>{
