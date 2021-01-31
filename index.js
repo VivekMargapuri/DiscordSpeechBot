@@ -313,7 +313,7 @@ function getHelpString() {
         out += 'OK Google favorites\n'
         out += 'OK Google list\n'
         out += 'OK Google clear list\n';
-        out += 'OK Google summon\n';
+        out += 'OK Google call -- moves everyone to a single voice channel\n';
         out += '```'
 
         out += '**TEXT COMMANDS:**\n'
@@ -696,6 +696,8 @@ async function music_message(message, mapKey) {
             })
 
         }  else if(args[0] == _CMD_SUMMON) {
+            
+             message.react(EMOJI_GREEN_CIRCLE)
             const channel = message.member.voice.channel;
             message.guild.members.cache.forEach(member => {
             //guard clause, early return
