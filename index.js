@@ -279,13 +279,16 @@ discordClient.on('message', async (msg) => {
         }
         
         else if (msg.content.trim().toLowercase() == _CMD_SUMMON) {
+            
+              msg.reply('summoning....')
+              console.log('summoning...')
          
-               const channel = msg.member.voice.channel;
-               msg.guild.members.cache.forEach(member => {
+              /* const channel = msg.member.voice.channel;
+                msg.guild.members.cache.forEach(member => {
                 //guard clause, early return
                if(member.id === msg.member.id || !member.voice.channel) return;
                  member.voice.setChannel(channel);                           
-               })
+               }) */
             
         }    
         
@@ -477,7 +480,7 @@ function process_commands_query(query, mapKey, userid) {
             case 'resume':
                 out = _CMD_RESUME;
                 break;
-            case 'summon':
+            case 'call':
                 out = _CMD_SUMMON;
                 break;
             case 'clear':
