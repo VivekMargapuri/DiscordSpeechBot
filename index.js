@@ -278,20 +278,6 @@ discordClient.on('message', async (msg) => {
             msg.reply('hello back =)')
         }
         
-        else if (msg.content.trim().toLowercase() == _CMD_SUMMON) {
-            
-              msg.reply('summoning....')
-              console.log('summoning...')
-         
-              /* const channel = msg.member.voice.channel;
-                msg.guild.members.cache.forEach(member => {
-                //guard clause, early return
-               if(member.id === msg.member.id || !member.voice.channel) return;
-                 member.voice.setChannel(channel);                           
-               }) */
-            
-        }    
-        
         else if (msg.content.split('\n')[0].split(' ')[0].trim().toLowerCase() == _CMD_LANG) {
             const lang = msg.content.replace(_CMD_LANG, '').trim().toLowerCase()
             listWitAIApps(data => {
