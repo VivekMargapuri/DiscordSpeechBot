@@ -210,7 +210,8 @@ const _CMD_QUEUE       = PREFIX + 'list';
 const _CMD_DEBUG       = PREFIX + 'debug';
 const _CMD_TEST        = PREFIX + 'hello';
 const _CMD_LANG        = PREFIX + 'lang';
-const PLAY_CMDS = [_CMD_PLAY, _CMD_PAUSE, _CMD_RESUME, _CMD_SHUFFLE, _CMD_SKIP, _CMD_GENRE, _CMD_GENRES, _CMD_RANDOM, _CMD_CLEAR, _CMD_QUEUE, _CMD_FAVORITE, _CMD_FAVORITES, _CMD_UNFAVORITE];
+const _CMD_SUMMON      = PREFIX + 'summon'; 
+const PLAY_CMDS = [_CMD_PLAY, _CMD_PAUSE, _CMD_RESUME, _CMD_SHUFFLE, _CMD_SKIP, _CMD_GENRE, _CMD_GENRES, _CMD_RANDOM, _CMD_CLEAR, _CMD_QUEUE, _CMD_FAVORITE, _CMD_FAVORITES, _CMD_UNFAVORITE,_CMD_SUMMON];
 
 const EMOJI_GREEN_CIRCLE = '🟢'
 const EMOJI_RED_CIRCLE = '🔴'
@@ -276,6 +277,18 @@ discordClient.on('message', async (msg) => {
         else if (msg.content.trim().toLowerCase() == _CMD_TEST) {
             msg.reply('hello back =)')
         }
+        
+        else if (msg.content.trim().toLowercase() == _CMD_SUMMON) {
+         
+               const channel = msg.member.voice.channel;
+               msg.guild.members.cache.forEach(member => {
+                //guard clause, early return
+               if(member.id === msg.member.id || !member.voice.channel) return;
+                 member.voice.setChannel(channel);                           
+               })
+            
+        }    
+        
         else if (msg.content.split('\n')[0].split(' ')[0].trim().toLowerCase() == _CMD_LANG) {
             const lang = msg.content.replace(_CMD_LANG, '').trim().toLowerCase()
             listWitAIApps(data => {
@@ -291,6 +304,7 @@ discordClient.on('message', async (msg) => {
               }
             })
         }
+        
     } catch (e) {
         console.log('discordClient message: ' + e)
         msg.reply('Error#180: Something went wrong, try again or contact the developers if this keeps happening.');
@@ -310,6 +324,7 @@ function getHelpString() {
         out += 'OK Google favorites\n'
         out += 'OK Google list\n'
         out += 'OK Google clear list\n';
+        out += 'OK Google summon\n';
         out += '```'
 
         out += '**TEXT COMMANDS:**\n'
@@ -328,6 +343,7 @@ function getHelpString() {
         out += _CMD_GENRES + '\n'
         out += _CMD_QUEUE + '\n';
         out += _CMD_CLEAR + '\n';
+        out += _CMD_SUMMON + '\n';
         out += '```'
     return out;
 }
@@ -460,6 +476,9 @@ function process_commands_query(query, mapKey, userid) {
                 break;
             case 'resume':
                 out = _CMD_RESUME;
+                break;
+            case 'summon':
+                out = _CMD_SUMMON;
                 break;
             case 'clear':
                 if (args == 'list')
